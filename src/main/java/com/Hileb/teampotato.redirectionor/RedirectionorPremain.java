@@ -23,13 +23,13 @@ public class RedirectionorPremain implements Runnable {
 
 	public static java.io.File tryGetMinecraftHome() {
 		try {
-			return (java.io.File)Class.of("net.minecraft.launchwrapper.Launch").getField("minecraftHome").get(null);
+			return (java.io.File)Class.forName("net.minecraft.launchwrapper.Launch").getField("minecraftHome").get(null);
 		} catch (Throwable ignored){}
 
 		try {
-			Object launcher = Class.of("cpw.mods.modlauncher.Launcher").getField("INSTANCE").get(null);
-			Object environment = Class.of("cpw.mods.modlauncher.Launcher").getField("environment").get(launcher);
-			java.util.Optional<java.nio.file.Path> path = (java.util.Optional<java.nio.file.Path>) Class.of("cpw.mods.modlauncher.api.IEnvironment").getMethod("getProperty").invoke(environment, Class.of("cpw.mods.modlauncher.api.IEnvironment$Keys").getField("GAMEDIR").get(null));
+			Object launcher = Class.forName("cpw.mods.modlauncher.Launcher").getField("INSTANCE").get(null);
+			Object environment = Class.forName("cpw.mods.modlauncher.Launcher").getField("environment").get(launcher);
+			java.util.Optional<java.nio.file.Path> path = (java.util.Optional<java.nio.file.Path>) Class.forName("cpw.mods.modlauncher.api.IEnvironment").getMethod("getProperty").invoke(environment, Class.forName("cpw.mods.modlauncher.api.IEnvironment$Keys").getField("GAMEDIR").get(null));
 			return path.get().toFile();
 		} catch (Throwable ignored){}
 

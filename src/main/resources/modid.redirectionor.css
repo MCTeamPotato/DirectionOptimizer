@@ -1,0 +1,12 @@
+@nilmod {
+	/* There is no id field. The filename defines the id of the mod. */
+	name: "Redirectionor";
+	description: "Redirectionor is the implementation of this concept, specifically for the Direction enum class stuff, to reduce the required memory of the game.";
+	authors: "MCTeamPotato, Kasualix, Hileb";
+	version: "1.7 for NilLoader";
+}
+
+entrypoints {
+	/* premain is the only entrypoint defined by NilLoader itself. */
+	premain: "com.Hileb.teampotato.redirectionor.RedirectionorPremain";
+}
