@@ -7,42 +7,32 @@ name: Build Retro
 on:
   push:
     branches:
-        - '1.7.10'
-        - '1.12.2-1.8.8'
+        - 'NilLoader'
 
 jobs:
   build:
-    name: Build Retro
+    name: Build Retro NilLoader
     runs-on: ubuntu-latest
 
     steps:
           - name: Checkout Repository
-            uses: actions/checkout@v3
-          - name: Gather Gradle properties
-            uses: madhead/read-java-properties@latest
-            id: gradle_properties
-            with:
-                 file: gradle.properties
-                 all: true
-
+            uses: actions/checkout@v4.1.4
+            
           - name: Grant Execute Permission for gradlew
             run: chmod +x gradlew
+
           - name: Setup Java
-            uses: actions/setup-java@v3
+            uses: actions/setup-java@v4.2.1
             with:
               java-version: '8'
               distribution: 'zulu'
               cache: gradle
-          - name : Setup Decomp Workspace
-            uses: gradle/gradle-build-action@v2
-            with:
-              arguments: setupDecompWorkspace
+
           - name: Build
-            uses: gradle/gradle-build-action@v2
-            with:
-              arguments: build
+            run: ./gradlew build
+
           - name: Upload Build Artifacts
-            uses: actions/upload-artifact@v2.2.3
+            uses: actions/upload-artifact@v4.3.3
             with:
               name: Redirectionor-snapshot.jar
               path: build/libs/*

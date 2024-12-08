@@ -1,0 +1,84 @@
+plugins {
+	id 'com.unascribed.nilgradle' version '1.4.0'
+}
+
+// You can change this to be higher if you like. NilLoader itself is compiled
+// for Java 8 for compatibility with older versions.
+sourceCompatibility = 8
+targetCompatibility = 8
+
+group = 'com.Hileb.teampotato.redirectionor'
+archivesBaseName = 'Redirectionor'
+version = '1.7 for NilLoader'
+
+repositories {
+	maven {
+		// NilLoader and NilGradle are published here
+		url 'https://repo.sleeping.town'
+		content {
+			includeGroup 'com.unascribed'
+		}
+	}
+	maven {
+		// If you wish to use Yarn or Intermediary
+		url 'https://maven.fabricmc.net'
+		content {
+			includeGroup 'net.fabricmc'
+		}
+	}
+	maven {
+		// If you wish to use mcp_config or compile against Minecraft Forge
+		url 'https://maven.minecraftforge.net'
+		content {
+			includeGroup 'net.minecraftforge'
+			includeGroup 'de.oceanlabs.mcp'
+		}
+	}
+}
+
+nil {
+	id "redirectionor"
+	// Set this to false for a smaller JAR that can't be run as a standalone Java agent
+	standalone true
+}
+
+dependencies {
+	loader 'com.unascribed:nilloader:1.3.3'
+
+	// Any version available in the vanilla launcher can be put here, or...
+	game nil.minecraft('1.7.10', 'client')
+	// ...you can use any version that's been archived in the IA by OmniArchive
+	//game nil.minecraftArchive('alpha', 'a1.1.1')
+	// Or, you can use something that isn't Minecraft with a normal Gradle dependency.
+
+	// You can specify additional dependencies using the "mod" configuration to
+	// add things that will be remapped:
+	// mod 'net.minecraftforge:forge:1.4.7-6.6.2.534:universal@zip
+
+	// If you have a dependency named after your via mappings (e.g. SRG/Intermediary)
+	// rather than raw obf names, then you can use modVia:
+	// modVia 'dev.emi:emi:0.3.3+1.4'
+
+	// Normal libraries can be added with the usual "implementation" configuration.
+}
+
+mappings {
+	// You can use any mappings in SRG, Proguard, or Tiny format here. There's
+	// special support for picking apart MCP release ZIPs as well, which is used
+	// here to provide MCP names for 1.4.7. (No MCPBot support yet.)
+	// work nil.mcpArchive('1.4.7', '726a')
+	// If your mappings use some form of intermediate, you'll need to specify it
+	// as a "via" mapping.
+	// For example:
+	// work 'net.fabricmc:yarn:1.18.2+build.3:v2'
+	// via 'net.fabricmc:intermediary:1.18.2:v2'
+	// You can use official Mojang mappings like so:
+	// work nil.mojmap('1.18.2', 'client')
+	
+	// You can add as many additional "target" mappings as you like here. They
+	// have to resolve to the same "base" as your work/via mapping, and you can
+	// select which one you want at runtime.
+	// For example, to use the SRGs for the same MCP we pulled in above:
+	// target nil.mcpArchiveSrg('1.4.7', '726a')
+	// (1.4.7 Forge doesn't use SRGs, but you'll need this for 1.5, 1.6, 1.7, etc.)
+}
