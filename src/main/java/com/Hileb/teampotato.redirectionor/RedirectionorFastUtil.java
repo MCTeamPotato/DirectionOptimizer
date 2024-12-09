@@ -47,7 +47,7 @@ public class RedirectionorFastUtil {
     }
 
     public static boolean isAvailable(String name){
-        if (name.startWith("java.")) return false;
+        if (name.startsWith("java.")) return false;
         return RedirectionorConfig.Config.isBlock != (isPrefixed(name) || isContained(name));
     }
 
