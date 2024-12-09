@@ -30,7 +30,7 @@ public class RedirectionorTransformer implements nilloader.api.ClassTransformer 
                             iterator.remove();
                         }
                     }
-                    if (RedirectionorConfig.Config.printTransformedClasses) Redirectionor.LOGGER.info("Redirectionor : " + className);
+                    if (RedirectionorConfig.Config.printTransformedClasses) RedirectionorPremain.LOGGER.info("Redirectionor : " + className);
                     ClassWriter classWriter = new ClassWriter(classReader, 0);
                     cn.accept(classWriter);
                     return classWriter.toByteArray();
