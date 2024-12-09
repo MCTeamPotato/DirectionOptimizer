@@ -1,5 +1,6 @@
 package com.Hileb.teampotato.redirectionor;
 
+import nilloader.api.lib.asm.Symbol;
 /**
  * @Project Redirectionor
  * @Author Hileb
@@ -12,28 +13,35 @@ public class RedirectionorFastUtil {
         int passcount = 10;
         for(int i = 1; i < constantsCount; i++){
             switch (clazz[passcount]){
-                case 9:
-                case 10:
-                case 11:
-                case 3:
-                case 4:
-                case 12:
-                case 18:
+                case Symbol.CONSTANT_FIELDREF_TAG:
+                case Symbol.CONSTANT_METHODREF_TAG:
+                case Symbol.CONSTANT_INTERFACE_METHODREF_TAG:
+                case Symbol.CONSTANT_INTEGER_TAG:
+                case Symbol.CONSTANT_FLOAT_TAG:
+                case Symbol.CONSTANT_NAME_AND_TYPE_TAG:
+                case Symbol.CONSTANT_DYNAMIC_TAG:
+                case Symbol.CONSTANT_INVOKE_DYNAMIC_TAG:
                     passcount += 5;
                     break;
-                case 5:
-                case 6:
+                case Symbol.CONSTANT_LONG_TAG:
+                case Symbol.CONSTANT_DOUBLE_TAG:
                     passcount += 9;
                     break;
-                case 1:
-                    passcount += 3 + readUnsignedShort(clazz, passcount + 1);
+                case Symbol.CONSTANT_UTF8_TAG:
+                    passcount += 3 + readUnsignedShort(passcount + 1);
                     break;
-                case 15:
+                case Symbol.CONSTANT_METHOD_HANDLE_TAG:
                     passcount += 4;
                     break;
-                default:
+                case Symbol.CONSTANT_CLASS_TAG:
+                case Symbol.CONSTANT_STRING_TAG:
+                case Symbol.CONSTANT_METHOD_TYPE_TAG:
+                case Symbol.CONSTANT_PACKAGE_TAG:
+                case Symbol.CONSTANT_MODULE_TAG:
                     passcount += 3;
                     break;
+                default:
+                    throw new IllegalArgumentException();
             }
         }
         passcount = readUnsignedShort(clazz, passcount);
