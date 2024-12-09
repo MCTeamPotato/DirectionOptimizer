@@ -19,21 +19,6 @@ repositories {
 			includeGroup 'com.unascribed'
 		}
 	}
-	maven {
-		// If you wish to use Yarn or Intermediary
-		url 'https://maven.fabricmc.net'
-		content {
-			includeGroup 'net.fabricmc'
-		}
-	}
-	maven {
-		// If you wish to use mcp_config or compile against Minecraft Forge
-		url 'https://maven.minecraftforge.net'
-		content {
-			includeGroup 'net.minecraftforge'
-			includeGroup 'de.oceanlabs.mcp'
-		}
-	}
 }
 
 nil {
