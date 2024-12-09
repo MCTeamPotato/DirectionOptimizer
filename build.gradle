@@ -39,7 +39,7 @@ repositories {
 nil {
 	id "redirectionor"
 	// Set this to false for a smaller JAR that can't be run as a standalone Java agent
-	standalone true
+	standalone false
 }
 
 dependencies {
