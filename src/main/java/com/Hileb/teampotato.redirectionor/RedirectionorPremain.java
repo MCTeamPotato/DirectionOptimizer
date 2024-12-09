@@ -27,9 +27,17 @@ public class RedirectionorPremain implements Runnable {
 		} catch (Throwable ignored){}
 
 		try {
-			Object launcher = Class.forName("cpw.mods.modlauncher.Launcher").getField("INSTANCE").get(null);
-			Object environment = Class.forName("cpw.mods.modlauncher.Launcher").getField("environment").get(launcher);
-			java.util.Optional<java.nio.file.Path> path = (java.util.Optional<java.nio.file.Path>) Class.forName("cpw.mods.modlauncher.api.IEnvironment").getMethod("getProperty").invoke(environment, Class.forName("cpw.mods.modlauncher.api.IEnvironment$Keys").getField("GAMEDIR").get(null));
+			java.util.Optional<java.nio.file.Path> path = 
+				(java.util.Optional<java.nio.file.Path>) Class.forName("cpw.mods.modlauncher.api.IEnvironment")
+				.getMethod("getProperty")
+				.invoke(
+					Class.forName("cpw.mods.modlauncher.Launcher")
+						.getField("environment")
+						.get(Class.forName("cpw.mods.modlauncher.Launcher")
+							.getField("INSTANCE")
+							.get(null)), 
+					((java.util.function.Supplier<?>) Class.forName("cpw.mods.modlauncher.api.IEnvironment$Keys").getField("GAMEDIR").get(null)).get()
+				);
 			return path.get().toFile();
 		} catch (Throwable ignored){}
 		LOGGER.error("Could not find MinecraftHome");
