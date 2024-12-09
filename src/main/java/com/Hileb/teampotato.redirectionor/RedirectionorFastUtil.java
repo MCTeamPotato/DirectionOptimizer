@@ -27,7 +27,7 @@ public class RedirectionorFastUtil {
                     size = 9;
                     break;
                 case 1:
-                    size = 3 + readUnsignedShort(clazz,passcount + 1);
+                    size = 3 + readUnsignedShort(clazz, passcount + 1);
                     break;
                 case 15:
                     size = 4;
@@ -41,11 +41,13 @@ public class RedirectionorFastUtil {
         passcount = readUnsignedShort(clazz, passcount);
         return (passcount & 16384) !=0;
     }
+
     public static int readUnsignedShort(byte[] b, int index) {
         return ((b[index] & 0xFF) << 8) | (b[index + 1] & 0xFF);
     }
 
     public static boolean isAvailable(String name){
+        if (name.startWith("java.")) return false;
         return RedirectionorConfig.Config.isBlock != (isPrefixed(name) || isContained(name));
     }
 

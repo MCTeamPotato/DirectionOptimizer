@@ -12,7 +12,7 @@ import java.util.ListIterator;
 public class RedirectionorTransformer implements nilloader.api.ClassTransformer {
 	@Override
 	public byte[] transform(String className, byte[] originalData) {
-		if (!RedirectionorFastUtil.isEnum(originalData) || !RedirectionorFastUtil.isAvailable(className)){
+		if (!RedirectionorFastUtil.isAvailable(className) || !RedirectionorFastUtil.isEnum(originalData)){
                 return originalData;
         }
 		try{
