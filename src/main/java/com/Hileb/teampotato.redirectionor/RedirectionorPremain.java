@@ -18,7 +18,7 @@ public class RedirectionorPremain implements Runnable {
 		ModRemapper.setTargetMapping("default");
 		
 		// Any class transformers need to be registered with NilLoader like this.
-		ClassTransformer.register(new ExampleTransformer());
+		ClassTransformer.register(new RedirectionorTransformer());
 	}
 
 	public static java.io.File tryGetMinecraftHome() {

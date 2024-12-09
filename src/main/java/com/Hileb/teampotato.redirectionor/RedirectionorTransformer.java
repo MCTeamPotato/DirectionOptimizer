@@ -1,11 +1,11 @@
 package com.Hileb.teampotato.redirectionor;
 
-import org.objectweb.asm.ClassReader;
-import org.objectweb.asm.ClassWriter;
-import org.objectweb.asm.Opcodes;
-import org.objectweb.asm.tree.AbstractInsnNode;
-import org.objectweb.asm.tree.ClassNode;
-import org.objectweb.asm.tree.MethodNode;
+import nilloader.api.lib.asm.ClassReader;
+import nilloader.api.lib.asm.ClassWriter;
+import nilloader.api.lib.asm.Opcodes;
+import nilloader.api.lib.asm.tree.AbstractInsnNode;
+import nilloader.api.lib.asm.tree.ClassNode;
+import nilloader.api.lib.asm.tree.MethodNode;
 
 import java.util.ListIterator;
 
