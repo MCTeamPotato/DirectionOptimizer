@@ -19,6 +19,7 @@ public class RedirectionorTransformer implements nilloader.api.ClassTransformer 
             ClassReader classReader = new ClassReader(originalData);
             ClassNode cn = new ClassNode();
             classReader.accept(cn, 0);
+            if ((cn.access & 16384) ==0) return originalData;
             for(MethodNode mn:cn.methods){
                 if ("values".equals(mn.name) && mn.desc.startsWith("()")){
                     ListIterator<AbstractInsnNode> iterator = mn.instructions.iterator();
