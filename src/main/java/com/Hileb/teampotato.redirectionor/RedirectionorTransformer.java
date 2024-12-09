@@ -9,7 +9,7 @@ import nilloader.api.lib.asm.tree.MethodNode;
 
 import java.util.ListIterator;
 
-public class RedirectionorTransformer extends nilloader.api.ClassTransformer {
+public class RedirectionorTransformer implements nilloader.api.ClassTransformer {
 	@Override
 	public byte[] transform(String className, byte[] originalData) {
 		if (!RedirectionorFastUtil.isEnum(originalData) || !RedirectionorFastUtil.isAvailable(className)){

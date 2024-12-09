@@ -9,7 +9,7 @@ public class RedirectionorPremain implements Runnable {
 
 	// NilLoader comes with a logger abstraction that Does The Right Thing depending on the environment.
 	// You should always use it.
-	public static final NilLogger log = NilLogger.get("Redirectionor");
+	public static final NilLogger LOGGER = NilLogger.get("Redirectionor");
 	
 	@Override
 	public void run() {
@@ -32,7 +32,7 @@ public class RedirectionorPremain implements Runnable {
 			java.util.Optional<java.nio.file.Path> path = (java.util.Optional<java.nio.file.Path>) Class.forName("cpw.mods.modlauncher.api.IEnvironment").getMethod("getProperty").invoke(environment, Class.forName("cpw.mods.modlauncher.api.IEnvironment$Keys").getField("GAMEDIR").get(null));
 			return path.get().toFile();
 		} catch (Throwable ignored){}
-
+		LOGGER.error("Could not find MinecraftHome");
 		return null;
 	}
 
