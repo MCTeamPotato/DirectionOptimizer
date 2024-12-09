@@ -28,7 +28,7 @@ public class RedirectionorFastUtil {
                     passcount += 9;
                     break;
                 case Symbol.CONSTANT_UTF8_TAG:
-                    passcount += 3 + readUnsignedShort(passcount + 1);
+                    passcount += 3 + readUnsignedShort(clazz, passcount + 1);
                     break;
                 case Symbol.CONSTANT_METHOD_HANDLE_TAG:
                     passcount += 4;
