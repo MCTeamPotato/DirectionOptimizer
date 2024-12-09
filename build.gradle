@@ -9,7 +9,7 @@ targetCompatibility = 8
 
 group = 'com.Hileb.teampotato.redirectionor'
 archivesBaseName = 'Redirectionor'
-version = '1.7 for NilLoader'
+version = '1.8 for NilLoader'
 
 repositories {
 	maven {
