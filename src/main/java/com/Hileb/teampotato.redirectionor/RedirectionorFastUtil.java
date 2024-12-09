@@ -11,7 +11,6 @@ public class RedirectionorFastUtil {
         int constantsCount = readUnsignedShort(clazz, 8);
         int passcount = 10;
         for(int i = 1; i < constantsCount; i++){
-            int size=0;
             switch (clazz[passcount]){
                 case 9:
                 case 10:
@@ -20,23 +19,22 @@ public class RedirectionorFastUtil {
                 case 4:
                 case 12:
                 case 18:
-                    size = 5;
+                    passcount += 5;
                     break;
                 case 5:
                 case 6:
-                    size = 9;
+                    passcount += 9;
                     break;
                 case 1:
-                    size = 3 + readUnsignedShort(clazz, passcount + 1);
+                    passcount += 3 + readUnsignedShort(clazz, passcount + 1);
                     break;
                 case 15:
-                    size = 4;
+                    passcount += 4;
                     break;
                 default:
-                    size = 3;
+                    passcount += 3;
                     break;
             }
-            passcount += size;
         }
         passcount = readUnsignedShort(clazz, passcount);
         return (passcount & 16384) !=0;
@@ -47,7 +45,6 @@ public class RedirectionorFastUtil {
     }
 
     public static boolean isAvailable(String name){
-        if (name.startsWith("java.")) return false;
         return RedirectionorConfig.Config.isBlock != (isPrefixed(name) || isContained(name));
     }
 
