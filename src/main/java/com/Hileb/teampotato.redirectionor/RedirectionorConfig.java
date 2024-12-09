@@ -88,7 +88,8 @@ public class RedirectionorConfig {
 
 
     public static void initConfig(){
-        File gameRunRoot = RedirectionorPremain.tryGetMinecraftHome();
+        if (CONFIG_FILE == null) {
+            File gameRunRoot = RedirectionorPremain.tryGetMinecraftHome();
         File config = new File(gameRunRoot,"config");
 
         if (!config.exists()){
@@ -115,6 +116,7 @@ public class RedirectionorConfig {
             } catch (IOException e) {
                 throw new RuntimeException("Could not create config file", e);
             }
+        }
         }
     }
     public static class Config{

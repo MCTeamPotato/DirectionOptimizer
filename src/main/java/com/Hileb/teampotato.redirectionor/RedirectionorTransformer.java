@@ -12,6 +12,7 @@ import java.util.ListIterator;
 public class RedirectionorTransformer implements nilloader.api.ClassTransformer {
 	@Override
 	public byte[] transform(String className, byte[] originalData) {
+        RedirectionorConfig.initConfig();
 		if (!RedirectionorFastUtil.isAvailable(className) || !RedirectionorFastUtil.isEnum(originalData)){
                 return originalData;
         }
