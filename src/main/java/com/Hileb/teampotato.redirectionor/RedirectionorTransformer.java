@@ -47,7 +47,7 @@ public class RedirectionorTransformer implements nilloader.api.ClassTransformer 
         if (clazz == null || clazz.length < 8) return false;
         int constantsCount = readUnsignedShort(clazz, 8);
         int passcount = 10;
-        for(int i = 1; i < constantsCount; i++){
+        for(int i = 0; i < constantsCount; i++){
             switch (clazz[passcount]){
                 case 3:
                 case 4:
@@ -77,7 +77,7 @@ public class RedirectionorTransformer implements nilloader.api.ClassTransformer 
                     passcount += 3;
                     break;
                 default:
-                    throw new IllegalArgumentException();
+                    break;
             }
         }
         passcount = readUnsignedShort(clazz, passcount);
