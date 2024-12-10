@@ -119,6 +119,29 @@ public class RedirectionorConfig {
         }
         }
     }
+
+    public static boolean isAvailable(String name){
+        return RedirectionorConfig.Config.isBlock != (isPrefixed(name) || isContained(name));
+    }
+
+    public static boolean isContained(String name){
+        for(String modid : RedirectionorConfig.Config.contains){
+            if (name.contains(modid)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean isPrefixed(String name){
+        for(String modid : RedirectionorConfig.Config.prefix){
+            if (name.startsWith(modid)){
+                return true;
+            }
+        }
+        return false;
+    }
+
     public static class Config{
         public static boolean generateConfigWhenCrash = true;
         public static boolean printTransformedClasses = false;
